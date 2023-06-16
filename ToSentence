@@ -1,13 +1,25 @@
 public class StringUtilities {
     public static String ToSentence(String input) {
         StringBuilder result = new StringBuilder();
-       
-        String lowercase = input.toLowerCase();
-       
-        result.append(Character.toUpperCase(lowercase.charAt(0)));
-       
-        result.append(lowercase.substring(1));
         
+        String[] words = input.split(" ");
+        
+        for (int i = 0; i < words.length; i++) {
+            String word = words[i];
+            
+            if (i == 0) {
+                result.append(Character.toUpperCase(word.charAt(0)));
+            } else {
+                result.append(word.charAt(0));
+            }
+            
+            result.append(word.substring(1).toLowerCase());
+            
+            if (i < words.length - 1) {
+                result.append(" ");
+            }
+        }
+       
         if (!input.endsWith(".")) {
             result.append(".");
         }
