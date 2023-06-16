@@ -1,0 +1,28 @@
+[Route("Teacher")]
+public class TeacherController : ControllerBase
+{
+    private readonly UniversityDbContext _dbContext;
+
+    public TeacherController(UniversityDbContext dbContext)
+    {
+        _dbContext = dbContext;
+    }
+
+    [HttpDelete("{id}")]
+    public IActionResult DeleteTeacher(int id)
+    {
+        var teacher = _dbContext.Teachers
+            .Include(t => t.Skills)
+            .FirstOrDefault(t => t.Id == id);
+
+        if (teacher == null)
+        {
+            return NotFound();
+        }
+
+        _dbContext.Teachers.Remove(teacher);
+        _dbContext.SaveChanges();
+
+        return Ok();
+    }
+}
