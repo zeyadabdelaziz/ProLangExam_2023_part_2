@@ -1,0 +1,17 @@
+public class StringUtilities {
+    public static String ToSentence(String input) {
+        StringBuilder result = new StringBuilder();
+       
+        String lowercase = input.toLowerCase();
+       
+        result.append(Character.toUpperCase(lowercase.charAt(0)));
+       
+        result.append(lowercase.substring(1));
+        
+        if (!input.endsWith(".")) {
+            result.append(".");
+        }
+        
+        return result.toString();
+    }
+}
