@@ -6,7 +6,6 @@ public class Optional<T> where T : class
     {
         _value = value;
     }
-
     public bool HasValue => _value != null;
 
     public T Value
