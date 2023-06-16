@@ -26,3 +26,12 @@ public class Optional<T> where T : class
         return _value?.ToString() ?? string.Empty;
     }
 }
+var name1 = new Optional<string>("Marcin");
+Console.WriteLine(name1.HasValue);  
+Console.WriteLine(name1);  
+Console.WriteLine(name1.Value);  
+
+var name2 = new Optional<string>(null);
+Console.WriteLine(name2.HasValue);  
+Console.WriteLine(name2); 
+Console.WriteLine(name2.Value);  
