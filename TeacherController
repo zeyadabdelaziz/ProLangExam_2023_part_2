@@ -1,0 +1,28 @@
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
+
+[Route("Teacher")]
+public class TeacherController : ControllerBase
+{
+    private readonly UniversityDbContext _dbContext;
+
+    public TeacherController(UniversityDbContext dbContext)
+    {
+        _dbContext = dbContext;
+    }
+
+    // GET: /Teacher/All
+    [HttpGet("All")]
+    public IActionResult GetAllTeachers()
+    {
+        var teachers = _dbContext.Teachers.Select(t => new
+        {
+            t.Id,
+            t.Name,
+            t.Age
+        }).ToList();
+
+        return Ok(teachers);
+    }
+}
