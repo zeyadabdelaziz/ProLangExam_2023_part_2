@@ -1,0 +1,37 @@
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
+
+[Route("Teacher")]
+public class TeacherController : ControllerBase
+{
+    private readonly UniversityDbContext _dbContext;
+
+    public TeacherController(UniversityDbContext dbContext)
+    {
+        _dbContext = dbContext;
+    }
+
+    [HttpGet("{id}")]
+    public IActionResult GetTeacher(int id)
+    {
+        var teacher = _dbContext.Teachers
+            .Include(t => t.Skills)
+            .FirstOrDefault(t => t.Id == id);
+
+        if (teacher == null)
+        {
+            return NotFound();
+        }
+
+        var teacherWithSkills = new
+        {
+            teacher.Id,
+            teacher.Name,
+            teacher.Age,
+            Skills = teacher.Skills.Select(s => s.Name).ToList()
+        };
+
+        return Ok(teacherWithSkills);
+    }
+}
