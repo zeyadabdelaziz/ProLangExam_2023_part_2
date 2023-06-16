@@ -1,0 +1,16 @@
+public static class StringExtensions
+{
+    public static string ToPascalCase(this string input)
+    {
+        string[] words = input.Split(' ');
+        StringBuilder result = new StringBuilder();
+
+        foreach (string word in words)
+        {
+            string capitalizedWord = char.ToUpper(word[0]) + word.Substring(1).ToLower();
+            result.Append(capitalizedWord);
+        }
+
+        return result.ToString();
+    }
+}
