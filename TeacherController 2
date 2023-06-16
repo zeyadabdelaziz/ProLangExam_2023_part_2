@@ -24,14 +24,7 @@ public class TeacherController : ControllerBase
             return NotFound();
         }
 
-        var teacherWithSkills = new
-        {
-            teacher.Id,
-            teacher.Name,
-            teacher.Age,
-            Skills = teacher.Skills.Select(s => s.Name).ToList()
-        };
-
-        return Ok(teacherWithSkills);
+        return Ok(teacher);
     }
 }
+
