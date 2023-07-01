@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { TeacherService } from './teacher.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,7 @@ import { TeacherService } from './teacher.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  teachers: any[] = [];
+  teachers: Observable<any[]> = new Observable<any[]>();
 
   constructor(private teacherService: TeacherService) {
     this.teachers = teacherService.getTeachers();

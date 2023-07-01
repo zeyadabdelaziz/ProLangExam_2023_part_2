@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-teacher-list',
@@ -6,5 +7,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./teacher-list.component.css']
 })
 export class TeacherListComponent {
-  @Input() teachers: any[] = [];
+  @Input() teachers: Observable<any[]> = new Observable<any[]>();
 }
