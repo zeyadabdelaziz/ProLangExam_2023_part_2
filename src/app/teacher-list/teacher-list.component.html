@@ -2,7 +2,10 @@
   <li *ngFor="let teacher of teachers | async">
     {{ teacher.firstName }} {{teacher.lastName}}
     <ul>
-      <li *ngFor="let skill of teacher.skills">{{skill}}</li>
+      <li *ngFor="let skill of teacher.skills">
+      {{skill}}
+      <button (click)="deleteSkill(teacher.id, skill)">Delete</button>
+      </li>
     </ul>
   </li>
   </ul>

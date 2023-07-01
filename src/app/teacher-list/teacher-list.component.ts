@@ -8,4 +8,16 @@ import { Observable } from 'rxjs';
 })
 export class TeacherListComponent {
   @Input() teachers: Observable<any[]> = new Observable<any[]>();
+
+  deleteSkill(teacherId: number, skill: string) {
+    this.teachers.subscribe(teachers => {
+      const teacher = teachers.find(t => t.id === teacherId);
+      if (teacher) {
+        const index = teacher.skills.indexOf(skill);
+        if (index !== -1) {
+          teacher.skills.splice(index, 1);
+        }
+      }
+    });
+  }
 }
